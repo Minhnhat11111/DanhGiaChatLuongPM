@@ -1,0 +1,61 @@
+﻿@model TapHoa.Models.NHANVIEN
+
+@{ ViewBag.Title = "Delete";
+                Layout = "~/Views/Shared/_MainLayout.cshtml"; }
+
+<div class="container mt-4">
+    <h2>Xóa nhân viên</h2>
+
+    <h3>Bạn có chắc chắn muốn xóa</h3>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h4 class="card-title">Nhân viên</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    Họ tên nhân viên
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.HOTEN)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Địa chỉ
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.DCHI)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Số điện thoại
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.SDT)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Tên đăng nhập
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TENDANGNHAP)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Mật khẩu
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.MATKHAU)
+                </dd>
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+@Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+                </div>            }
+        </div>
+    </div>
+</div>

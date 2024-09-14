@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TapHoa.Models.SANPHAM>
+
+<div style="max-height: 400px; overflow-y: auto;">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Đơn vị tính</th>
+                <th>Loại hàng</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.SOLUONG > 0)
+                {
+                    <tr>
+                        <td><img src="~/Images/@item.HINHANH" width="45" /></td>
+                        <td>@item.TENSP</td>
+                        <td>@item.DVT.TENDVT</td>
+                        <td>@item.LOAIHANG.TENLOAI</td>
+                        <td>@item.GIAHIENHANH</td>
+                        <td>@item.SOLUONG</td>
+                        <td>
+                            <button type="button" class="btn btn-success btnthem"
+                                    data-id="@item.MASP" data-name="@item.TENSP"
+                                    data-price="@item.GIAHIENHANH" data-dvt="@item.DVT.TENDVT"
+                                    data-loai="@item.LOAIHANG.TENLOAI" data-image="@item.HINHANH">
+                                Thêm
+                            </button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

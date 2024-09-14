@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d9aa463d14449da98c1bad84839e9a0" Name="Diagram1">
+        <EntityTypeShape EntityType="TapHoaModel.ADMIN" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TapHoaModel.CTHD" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TapHoaModel.DVT" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TapHoaModel.HOADON" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TapHoaModel.LOAIHANG" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TapHoaModel.NHANVIEN" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TapHoaModel.SANPHAM" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="TapHoaModel.FK_CTHD_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="TapHoaModel.FK_CTHD_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="TapHoaModel.FK_SANPHAM_DVT" ManuallyRouted="false" />
+        <AssociationConnector Association="TapHoaModel.FK_HOADON_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="TapHoaModel.FK_SANPHAM_LOAIHANG" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

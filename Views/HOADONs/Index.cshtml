@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TapHoa.Models.HOADON>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header d-flex justify-content-between align-items-center">
+                    <h4 class="title">Danh sách hoá đơn</h4>
+                    <div class="col-md-6 col-lg-4 float-end">
+                        <button id="exportButton" class="btn btn-primary" onclick="showExportForm()" style="float: right; margin-right: 40px">Xuất Excel</button>
+                        <form id="exportForm" method="get" action="@Url.Action("ExportToExcel", "HOADONs")" style="display: none;">
+                            <div class="form-group">
+                                <label for="startDate">Ngày bắt đầu:</label>
+                                <input style="width: 75%" type="date" id="startDate" name="startDate" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate">Ngày kết thúc:</label>
+                                <input style="width: 75%" type="date" id="endDate" name="endDate" class="form-control" required />
+                            </div>
+                            <div class="form-group text-danger" id="dateError" style="display: none;">
+                                Ngày kết thúc phải sau ngày bắt đầu.
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Xác nhận</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Số HD</th>
+                                <th>Ngày tạo</th>
+                                <th>Nhân viên tạo</th>
+                                <th>Tổng số lượng</th>
+                                <th>Tổng tiền</th>
+                                <th>Số tiền phải trả</th>
+                                <th>Số tiền thói</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.SOHD)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.NGHD)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.NHANVIEN.HOTEN)</td>
+                                    <td style="text-align: center;">@Html.DisplayFor(modelItem => item.TONGSL)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TONGTIEN)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PHAITRA)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TIENTRALAI)</td>
+                                    <td>
+                                        @*@Html.ActionLink("Sửa", "Edit", new { id = item.SOHD }, new { @class = "btn btn-success", style = "margin: 0px 5px" })*@
+                                        @Html.ActionLink("Chi tiết", "Details", new { id = item.SOHD }, new { @class = "btn btn-danger", style = "margin: 0px 5px" })
+                                        @Html.ActionLink("Xóa", "Delete", new { id = item.SOHD }, new { @class = "btn btn-warning", style = "margin: 0px 5px" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function showExportForm() {
+        $('#exportButton').hide();
+        $('#exportForm').show();
+    }
+
+    $(document).ready(function () {
+        $('#exportForm').on('submit', function (event) {
+            var startDate = new Date($('#startDate').val());
+            var endDate = new Date($('#endDate').val());
+
+            if (startDate > endDate) {
+                event.preventDefault();
+                $('#dateError').show();
+            } else {
+                $('#dateError').hide();
+                $('#exportButton').show();
+                $('#exportForm').hide();
+            }
+        });
+    });
+</script>

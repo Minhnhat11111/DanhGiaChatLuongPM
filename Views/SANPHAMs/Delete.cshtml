@@ -1,0 +1,76 @@
+﻿@model TapHoa.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-danger">Xóa Sản Phẩm</h2>
+    <h3>Bạn có chắc muốn xóa sản phẩm này?</h3>
+    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <h4 class="card-title text-primary">Chi tiết sản phẩm</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    Tên sản phẩm
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TENSP)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Giá
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.GIAHIENHANH)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Số lượng
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.SOLUONG)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Số lượng đã bán
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.SOLUONGDABAN)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Hình ảnh
+                </dt>
+                <dd class="col-sm-9">
+                    <img src="~/Images/@Model.HINHANH" class="img-thumbnail" width="50" />
+                </dd>
+
+                <dt class="col-sm-3">
+                    Đơn vị tính
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.DVT.TENDVT)
+                </dd>
+
+                <dt class="col-sm-3">
+                    Loại sản phẩm
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.LOAIHANG.TENLOAI)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary ml-2" })
+        </div>
+    }
+</div>

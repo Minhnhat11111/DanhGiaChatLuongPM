@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ResetPass";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div id="container" class="container">
+    <div style="background: #EFF0F5" class="main">
+        <div class="login">
+            <div class="login-title">
+                <div class="login-title-big">
+
+                    <h6 style="color: red">@ViewBag.LoginFail</h6>
+                </div>
+            </div>
+            @using (Html.BeginForm("ResetPass", "User"))
+            {
+                @Html.ValidationSummary(false)
+                <div class="login-form">
+                    <div class="login-form-left">
+                        <label>
+                            Tên đăng nhập*
+                        </label>
+                        <input type="text" name="TENDANGNHAP" placeholder="Vui lòng nhập tên đăng nhập" value="" />
+                        <div class="login-forgot">
+                            <a>Mật khẩu sẽ được đặt lại là: a1111111</a>
+
+                        </div>
+                    </div>
+                    <div class="login-form-right">
+                        <div class="button-first">
+                            <button type="submit">
+                                RESET PASSWORD
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

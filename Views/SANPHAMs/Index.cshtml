@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TapHoa.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@{ var nhanvien = Session["NHANVIEN"] as TapHoa.Models.NHANVIEN;
+    var admin = Session["ADMIN"] as TapHoa.Models.ADMIN;}
+@if (nhanvien != null || admin != null)
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Danh sách loại hàng</h4>
+                        <p class="category">@Html.ActionLink("Tạo mới", "Create", null, new { @class = "btn btn-primary" })</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <form asp-controller="SANPHAMs" asp-action="Index">
+                            <p>
+                                Tìm kiếm: <input type="text" name="SearchString" />
+                                <input type="submit" value="Search" class="btn btn-success" />
+                            </p>
+                        </form>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Loại hàng</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Số lượng đã bán</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.MASP)</td>
+                                        <td><img src="~/Images/@item.HINHANH" style="width: 45px; height: 45px" /></td>
+                                        <td>@Html.DisplayFor(modelItem => item.TENSP)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.DVT.TENDVT)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.LOAIHANG.TENLOAI)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.GIAHIENHANH)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SOLUONG)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.SOLUONGDABAN)</td>
+                                        <td>
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.MASP }, new { @class = "btn btn-success", style = "margin: 0px 5px" })
+                                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MASP }, new { @class = "btn btn-danger", style = "margin: 0px 5px" })
+                                            @Html.ActionLink("Xóa", "Delete", new { id = item.MASP }, new { @class = "btn btn-warning", style = "margin: 0px 5px" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

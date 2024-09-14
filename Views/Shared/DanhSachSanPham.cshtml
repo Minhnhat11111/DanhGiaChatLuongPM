@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TapHoa.Models.SANPHAM>
+@Html.Action("CartPartial", "BanHang")
+<div class="grid wide">
+
+    @for (int i = 0; i < Model.Count(); i += 6)
+    {
+        <div class="body__product-sale">
+            @for (int j = i; j < i + 6 && j < Model.Count(); j++)
+            {
+                <div class="col-md-2">
+                    <div class="body__wrapper-sale size-product">
+
+                        <img style="border-radius: 10px; width: 50px; height: 50px" src="~/Images/@Model.ElementAt(j).HINHANH" class="body__wrapper-sale-img size-img-product img-show-product" />
+
+                        <div class="wrapper wrapperhover">
+                            @*<div class="list-img-product">
+                                    <div>
+                                        <a href="#">
+                                            <img src="~/Images/@Model.ElementAt(j).SANPHAM.Anh1" alt="" />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <img src="~/Images/@Model.ElementAt(j).SANPHAM.Anh2" alt="" />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <img src="~/Images/@Model.ElementAt(j).SANPHAM.Anh3" alt="" />
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="#">
+                                            <img src="~/Images/@Model.ElementAt(j).SANPHAM.Anh4" alt="" />
+                                        </a>
+                                    </div>
+                                </div>*@
+                            <div class="body__wrapper-sale-desc">
+                                @Model.ElementAt(j).TENSP
+                            </div>
+                            <div class="body__wrapper-sale-price">@Model.ElementAt(j).GIAHIENHANH</div>
+
+                            <div class="sold-product">
+                                <span>@Model.ElementAt(j).SOLUONGDABAN Đã bán</span>
+                            </div>
+                            @using (Html.BeginForm("AddToCart", "BanHang", FormMethod.Post))
+                            {
+                                <input type="hidden" name="id" value="@Model.ElementAt(j).MASP" />
+                                <input type="hidden" id="sl-input" name="soluong" value="1" />
+                                <button type="submit" style="width: 100%; background-color: orange; border: none; color: white;">THÊM</button>
+
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    }
+
+
+</div>

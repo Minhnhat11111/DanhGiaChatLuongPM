@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div style="background: #EFF0F5" class="main">
+    <div class="register">
+        <div class="register-title">
+            <div class="register-title-big">
+                <h3>Tạo tài khoản</h3>
+            </div>
+        </div>
+        @using (Html.BeginForm("Register", "User"))
+        {
+            @Html.ValidationSummary(true)
+            <div class="register-form">
+                <div class="register-form-left">
+
+                    <label>
+                        Tên đăng nhập*
+                    </label>
+                    <input type="text" name="TENDANGNHAP" placeholder="Vui lòng nhập tên đăng nhập" pattern="^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}$" title="Tên đăng nhập phải có ít nhất 8 ký tự, bao gồm chữ và số." required />
+                    <label>
+                        Mật khẩu*
+                    </label>
+                    <input type="password" name="MATKHAU" placeholder="Vui lòng nhập mật khẩu của bạn tối thiểu 8 ký tự" pattern="^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}$" title="Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ và số." required />
+                    <label>
+                        Số điện thoại*
+                    </label>
+                    <input type="text" name="SDT" pattern="[0-9]{10}" maxlength="10" required placeholder="Nhập số điện thoại của bạn" value="">
+                    <span class="field-validation-error text-danger">@ViewBag.RegisterFail</span>
+                    <label>
+                        Địa chỉ*
+                    </label>
+                    <input type="text" name="DCHI" placeholder="Vui lòng nhập địa chỉ.">
+
+                </div>
+                <div class="register-form-right">
+
+                    <label>
+                        Họ tên*
+                    </label>
+                    <input type="text" name="HOTEN" required value="" placeholder="Họ Tên" />
+                    <div class="button-first">
+                        <button type="submit" style="color: white">
+                            ĐĂNG KÝ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
